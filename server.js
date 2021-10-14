@@ -3,10 +3,13 @@ const path = require('path');
 
 const app = express();
 
-app.use(express.static('./dist/dashboard-admin'));
+
+// Serve only the static files form the dist directory
+app.use(express.static('./dist/'));
 
 app.get('/*', (req, res) =>
-        res.sendFile('index.html', {root: 'dist/dashboard-admin'}),
-    );
+    res.sendFile('index.html', {root: 'dist/angular-app-heroku/'}),
+);
 
-app.listen(progress.env.PORT || 8080);
+// Start the app by listening on the default Heroku port
+app.listen(process.env.PORT || 8080);
